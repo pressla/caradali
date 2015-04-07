@@ -1,0 +1,5 @@
+uci set wireless.@wifi-device[0].channel=$1
+uci commit wireless 
+wifi
+echo "we are on channel $1 now"
+

@@ -1,12 +1,12 @@
 {
     "nodes": [
         {
-            "node_id": "c4:93:00:02:63:f3",
+            "node_id": "c4:93:00:02:85:cb",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -31,12 +31,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:86:0a",
+            "node_id": "c4:93:00:02:64:02",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -61,222 +61,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:85:c2",
+            "node_id": "c4:93:00:02:64:08",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:85:f8",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:98:9a",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:76:35",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:76:4d",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:76:0e",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:85:f2",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-device[0].channel",
-                    "value": "9"
-                },
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
-                    "value": "0"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "group",
-                    "value": "G9"
-                },
-                {
-                    "type": "myGrouping",
-                    "param": "name",
-                    "value": "L1"
-                }
-            ]
-        },
-        {
-            "node_id": "c4:93:00:02:85:e0",
-            "param": [
-                {
-                    "type": "uci%set",
-                    "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -300,5 +90,215 @@
                 }
             ]
         }
-    ]
+        {
+            "node_id": "c4:93:00:02:76:71",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+        {
+            "node_id": "c4:93:00:02:86:28",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+        {
+            "node_id": "c4:93:00:02:86:2e",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+        {
+            "node_id": "c4:93:00:02:63:f0",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+        {
+            "node_id": "c4:93:00:02:63:d5",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+        {
+            "node_id": "c4:93:00:02:85:d4",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+        {
+            "node_id": "c4:93:00:02:76:3b",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G9"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+   ]
 }

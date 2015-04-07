@@ -40,7 +40,7 @@ var p   = [];
 p.push(socket.subscribe('state'));
 p.push(socket.subscribe('mpath'));
 p.push(socket.subscribe('ifconfig'));
-//p.push(socket.subscribe('info'));
+p.push(socket.subscribe('info'));
 //p.push(socket.subscribe('top'));
 p.push(socket.subscribe('error'));
 p.push(socket.subscribe('meshlog'));
@@ -52,63 +52,76 @@ for (channel in p) {
 	p[channel].watch(function (data) {
 		try {mactable = JSON.parse(fs.readFileSync(mactablefilename, 'utf8'));} catch (e){console.log('file read error '+e); mactable = {nodes:[]};}
 		try {var nodes = JSON.parse(fs.readFileSync('./meshdump2', 'utf8'));} catch(err) {nodes =[];}
-		console.log(JSON.stringify(data[0],null,2));
-		console.log(JSON.stringify(data[1],null,2));
+		//console.log(JSON.stringify(data[0],null,2));//header
+		//console.log(JSON.stringify(data[1],null,2));//body
+		var i = _.findKey(nodes, 'node_id', data[0].node_id);
+	 	if (!i) {
+	 		nodes.push(data[0]);
+	 		i=nodes.length-1;
+	 	}
 		var header = data[0];
 		var b = data[1];
+
 			if (header.content == 'ifconfig') {
 				var wanip = b['br-wan'][1].address.replace('\"','');	 
-				var i = _.findKey(nodes, 'node_id', data[0].node_id);
-				if (i) {
-					nodes[i].wanip = wanip;
-				}
-			}
-			if (header.content == 'ifconfig') {
+				nodes[i].wanip = wanip;
 				try {
 					var vpnip = b['vpn_acc'][1].address.replace('\"','');	 
-					var i = _.findKey(nodes, 'node_id', data[0].node_id);
-					if (i) {
-						nodes[i].vpnip = vpnip;
-					}
+					nodes[i].vpnip = vpnip;
 				} catch (e) {}
 			}
-			if (header.content == 'mpath') {
-				var i = _.findKey(nodes, 'node_id', data[0].node_id);
-				if (i) {
-					nodes[i].meshdest = b.length-2;
+			if (header.content == 'info') {
+				if (n = b.indexOf('\u0002DALI:'))  //,"DALI.BUS:\u0002DALI:FF00\u0003
+				{
+					nodes[i].dali = b.substr(n+6,4);	
 				}
+			}
+			if (header.content == 'mpath') {
+				nodes[i].meshdest = b.length-2;
 			}
 			if (header.content == 'error') {
-				var i = _.findKey(nodes, 'node_id', data[0].node_id);
-				if (i) {
-					nodes[i].error = error + 1;
-				}
+				try{nodes[i].error = nodes[i].error + 1;}catch(e){nodes[i].error=0;}
+				nodes[i].errortxt = b;
 			}
 			if (header.content == 'state') {
-				var i = _.findKey(nodes, 'node_id', data[0].node_id);
-				if (i) {
-					nodes[i].cversion = b;
-				}
+				nodes[i].cversion = b;
 			}
 	 
 	 
 	 
 	 
-		var key = _.findKey(nodes, 'node_id', data[0].node_id);
-	 	if (!key) {
-	 		nodes.push(data[0]);
-	 	}
-	 
+ 		var dumper = '\n\n\n\n\n';
+	 	
+ 		dump = _.padLeft('cnt',3);
+ 		dump = dump+_.padLeft('MAC',18);
+ 		dump = dump+' '+_.padRight('VERSION',16);
+ 		dump = dump+_.padRight('WAN IP',16);
+ 		dump = dump+_.padRight('VPN IP',16);
+ 		dump = dump+_.padLeft('MESH',4);
+ 		dump = dump+_.padLeft('DALI',5);
+ 		dump = dump+_.padLeft('DALI',5);
+ 		dumper= dumper+(dump)+'\n';
+
 	 	for (n in nodes) {
-	 		dump = n+'\t';
-	 		dump = dump+nodes[n].node_id+'\t';
-	 		dump = dump+nodes[n].cversion+'\t';
-	 		dump = dump+nodes[n].wanip+'\t';
-	 		dump = dump+nodes[n].vpnip+'\t';
-	 		dump = dump+nodes[n].meshdest+'\t';
-	 		console.log(dump);
+	 		dump = _.padLeft(n,3);
+	 		dump = dump+_.padLeft(nodes[n].node_id,18);
+	 		if (!nodes[n].cversion) nodes[n].cversion = '---'
+	 		dump = dump+' '+_.padRight(nodes[n].cversion,13);
+	 						if (!nodes[n].wanip) nodes[n].wanip = '---'
+	 		dump = dump+' '+_.padRight(nodes[n].wanip,16);
+	 						if (!nodes[n].vpnip) nodes[n].vpnip = '---'
+	 		try{var v=nodes[n].vpnip.slice(0,15)}catch(e){v='---'}
+	 		dump = dump+_.padRight(v,16);
+	 						if (!nodes[n].meshdest) nodes[n].meshdest = '---'
+	 		dump = dump+_.padLeft(nodes[n].meshdest,4);
+	 						if (!nodes[n].dali) nodes[n].dali = '---'
+	 		dump = dump+_.padLeft(nodes[n].dali,5);
+	 						if (!nodes[n].error) nodes[n].error = '---'
+	 		dump = dump+_.padLeft(nodes[n].error,5);
+	 		dumper= dumper+(dump)+'\n';
 		 	if (bwritemactable == true) writemactable(nodes[n].node_id);
 	 	}
+	 	console.log(dumper)
 	 	fs.writeFileSync('./meshdump2',JSON.stringify(nodes));
 	});
 }
@@ -169,10 +182,11 @@ function readmactable() {
 
 
 }
-
+/*
 process.on('uncaughtException', function(err) {
     // handle the error safely
 	console.log('error', ': UNCAUGHT EXCEPTION '+err);
 })
 
 
+*/

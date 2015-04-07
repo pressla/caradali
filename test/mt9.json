@@ -1,12 +1,12 @@
 {
     "nodes": [
         {
-            "node_id": "c4:93:00:02:63:f3",
+            "node_id": "c4:93:00:02:85:cb",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -31,12 +31,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:86:0a",
+            "node_id": "c4:93:00:02:64:02",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -61,12 +61,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:85:c2",
+            "node_id": "c4:93:00:02:64:08",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -91,12 +91,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:85:f8",
+            "node_id": "c4:93:00:02:76:71",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -121,12 +121,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:98:9a",
+            "node_id": "c4:93:00:02:86:28",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -151,12 +151,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:76:35",
+            "node_id": "c4:93:00:02:86:2e",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -181,12 +181,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:76:4d",
+            "node_id": "c4:93:00:02:63:f0",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -211,12 +211,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:76:0e",
+            "node_id": "c4:93:00:02:63:d5",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -241,12 +241,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:85:f2",
+            "node_id": "c4:93:00:02:85:d4",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -271,12 +271,12 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:85:e0",
+            "node_id": "c4:93:00:02:76:3b",
             "param": [
                 {
                     "type": "uci%set",
                     "param": "wireless.@wifi-iface[0].ssid",
-                    "value": "AIMLED9"
+                    "value": "AIMLED"
                 },
                 {
                     "type": "uci%set",
@@ -300,5 +300,5 @@
                 }
             ]
         }
-    ]
+   ]
 }
