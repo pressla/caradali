@@ -1,13 +1,25 @@
-var ommands = [
+//Alex Pressl for imitrix GmbH
+
+var commands = [
+	['switch','G1', 0],
+	['switch','G1', 100],
+];
+
+var mmands = [
 	['switch','G1', 0],
 	['switch','G1', 10],
 	['switch','G1', 50],
 	['switch','G1', 65],
 	['switch','G1', 100],
+	['switch','G1', 100],
+	['switch','G1', 65],
+	['switch','G1', 50],
+	['switch','G1', 10],
+	['switch','G1', 0],
 
 ];
 
-var commands = [
+var ommands = [
 	['sendcmd',0xFF, 0x00],
 	['sendcmd',0xFF, 0x08],
 	['sendcmd',0xFF, 0xA0],
@@ -42,8 +54,6 @@ var commands = [
 	['sendcmd',0xFF, 0xA0],
 	['sendcmd',0xFF, 0x10],
 	['sendcmd',0xFF, 0xA0],
-	['sendcmd',0xFF, 0x11],
-	['sendcmd',0xFF, 0xA0],
 
 
 ];
@@ -67,28 +77,20 @@ pub.on('message', function (buf, rinfo) {
 
 
 setInterval(function(){
-	if (r==99) return;
+
 	send(commands[r][0], commands[r][1],commands[r][2]);	
 	if (commands[r][2]>=255 && commands[r][2]<=128) {
-		sleep(50);
-		send(commands[r][0], commands[r][1],commands[r][2]);	
+		//sleep(50);
+		//send(commands[r][0], commands[r][1],commands[r][2]);	
 	}
 	var adr = (("0" + commands[r][1].toString(16)).substr(-2)).toUpperCase();
 	var pay = (("0" + commands[r][2].toString(16)).substr(-2)).toUpperCase();
     console.log("Sent "+ commands[r][0]+adr+pay);
 	r++;
-	if (r>=commands.length) r=99;
+	if (r>=commands.length) r=0;
 
-}, 1000);
+}, 5000);
 
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 
 function send () {
   var args = [].slice.call(arguments);
