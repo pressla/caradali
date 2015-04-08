@@ -3,6 +3,7 @@
 
 var array = require('lodash/array');
 var _ = require('lodash');
+var _ = require('colors');
 var fs = require('fs');
 var bwritemactable = false;
 var mactable = 0;
@@ -48,6 +49,8 @@ p.push(socket.subscribe('module'));
 
 var nodes =[];
 
+
+
 for (channel in p) {
 	p[channel].watch(function (data) {
 		//console.log(JSON.stringify(data[0],null,2));//header
@@ -56,8 +59,13 @@ for (channel in p) {
 		if (data[0].node_id == entries[0].type)
 		 	console.log(data[0].node_id)+' '+data[1]; 
 
-	}else	 	
-	 	console.log(data[0].node_id+' '+JSON.stringify(data[1])); 
+	}else	 	{
+		if (data[0].content=='error')
+		 	console.log(data[0].node_id+' '+JSON.stringify(data[1]).red.bold); 
+		 else
+		 	console.log(data[0].node_id+' '+JSON.stringify(data[1]).yellow); 
+
+	}
 	});
 }
 

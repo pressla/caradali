@@ -1,7 +1,7 @@
 {
     "nodes": [
         {
-            "node_id": "c4:93:00:02:85:da",
+            "node_id": "c4:93:00:00:00:00",
             "param": [
                 {
                     "type": "uci%set",
@@ -36,7 +36,42 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:76:50",
+            "node_id": "c4:93:00:02:86:07",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[0].ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-device[0].channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_rssi_threshold",
+                    "value": "0"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.@wifi-iface[1].mesh_id",
+                    "value": "mesh-test"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G3"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        },
+        {
+            "node_id": "c4:93:00:02:63:d2",
             "param": [
                 {
                     "type": "uci%set",
@@ -106,7 +141,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:65:9d",
+            "node_id": "c4:93:00:02:76:53",
             "param": [
                 {
                     "type": "uci%set",
@@ -141,7 +176,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:86:1f",
+            "node_id": "c4:93:00:02:86:1c",
             "param": [
                 {
                     "type": "uci%set",
@@ -176,7 +211,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:85:fb",
+            "node_id": "c4:93:00:02:76:6e",
             "param": [
                 {
                     "type": "uci%set",
@@ -211,7 +246,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:63:f9",
+            "node_id": "c4:93:00:02:85:ec",
             "param": [
                 {
                     "type": "uci%set",
@@ -246,7 +281,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:00:00:00",
+            "node_id": "c4:93:00:02:85:ef",
             "param": [
                 {
                     "type": "uci%set",
@@ -281,7 +316,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:86:0d",
+            "node_id": "c4:93:00:02:76:7a",
             "param": [
                 {
                     "type": "uci%set",
@@ -316,7 +351,7 @@
             ]
         },
         {
-            "node_id": "c4:93:00:02:86:07",
+            "node_id": "c4:93:00:02:76:44",
             "param": [
                 {
                     "type": "uci%set",
