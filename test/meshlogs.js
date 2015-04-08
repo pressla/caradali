@@ -47,14 +47,13 @@ p.push(socket.subscribe('meshlog'));
 p.push(socket.subscribe('module'));
 
 var nodes =[];
-var mdumper = 'NO MESHDUMP COMING IN';
 
 for (channel in p) {
 	p[channel].watch(function (data) {
 		try {mactable = JSON.parse(fs.readFileSync(mactablefilename, 'utf8'));} catch (e){console.log('file read error '+e); mactable = {nodes:[]};}
 		try {var nodes = JSON.parse(fs.readFileSync('./meshdump2', 'utf8'));} catch(err) {nodes =[];}
 		//console.log(JSON.stringify(data[0],null,2));//header
-		//console.log(data[0].node_id +' '+JSON.stringify(data[1],null,2));//body
+		//console.log(JSON.stringify(data[1],null,2));//body
 		var i = _.findKey(nodes, 'node_id', data[0].node_id);
 	 	if (!i) {
 	 		nodes.push(data[0]);
@@ -79,32 +78,21 @@ for (channel in p) {
 				}
 			}
 			if (header.content == 'mpath') {
-				mdumper = header.node_id+'\n';
 				nodes[i].meshdest = b.length-2;
-				mdumper = mdumper+data[1].toString().replace(/,/g,'\n');
-				//console.log(JSON.stringify(data[1],null,2));//body
+				console.log(JSON.stringify(data[1],null,2));//body
 			}
 			if (header.content == 'error') {
 				try{nodes[i].error = nodes[i].error + 1;}catch(e){nodes[i].error=0;}
 				nodes[i].errortxt = b;
 			}
 			if (header.content == 'state') {
-				var d = typeof b;
-				if (d != 'string') {
-					var bs = (b);
-					nodes[i].cversion = bs.version;
-					nodes[i].restart_count = bs.restart_count;
-					nodes[i].channel = bs.channel;
-					nodes[i].ssid = bs.ssid;
-					nodes[i].mesh_id = bs.mesh_id;
-				}else	//old version
-					nodes[i].cversion = b;
+				nodes[i].cversion = b;
 			}
 	 
 	 
 	 
 	 
- 		var dumper = '\f'+mdumper+'\n\n';
+ 		var dumper = '\n\n\n\n\n';
 	 	
  		dump = _.padLeft('cnt',3);
  		dump = dump+_.padLeft('MAC',18);
@@ -122,8 +110,7 @@ for (channel in p) {
 	 		if (!nodes[n].cversion) nodes[n].cversion = '---'
 	 		dump = dump+' '+_.padRight(nodes[n].cversion,13);
 	 						if (!nodes[n].wanip) nodes[n].wanip = '---'
-	 		try{var v=nodes[n].wanip.slice(0,15)}catch(e){v='---'}
-	 		dump = dump+' '+_.padRight(v,16);
+	 		dump = dump+' '+_.padRight(nodes[n].wanip,16);
 	 						if (!nodes[n].vpnip) nodes[n].vpnip = '---'
 	 		try{var v=nodes[n].vpnip.slice(0,15)}catch(e){v='---'}
 	 		dump = dump+_.padRight(v,16);
@@ -131,31 +118,15 @@ for (channel in p) {
 	 		dump = dump+_.padLeft(nodes[n].meshdest,4);
 	 						if (!nodes[n].dali) nodes[n].dali = '---'
 	 		dump = dump+_.padLeft(nodes[n].dali,5);
-	 						if (!nodes[n].error) nodes[n].error = 0;
+	 						if (!nodes[n].error) nodes[n].error = '-'
 	 		dump = dump+_.padLeft(nodes[n].error,5);
 	 		dumper= dumper+(dump)+'\n';
 		 	if (bwritemactable == true) writemactable(nodes[n].node_id);
 	 	}
-	 	dumper = dumper + '[S]SendFile to nodes [C]Channel: 55 [I]SSID: AIMLED [R]Reset meshlog';
 	 	console.log(dumper)
 	 	fs.writeFileSync('./meshdump2',JSON.stringify(nodes));
 	});
 }
-
-var keypress = require('keypress');
- 
-// make `process.stdin` begin emitting "keypress" events 
-keypress(process.stdin);
- 
-// listen for the "keypress" event 
-process.stdin.on('keypress', function (ch, key) {
-  console.log('got "keypress"', key);
-  if (key.name == 's') {
-    process.exit();
-  }
-});
- 
-process.stdin.resume();
 
 function writemactable(mac) { //'wifi', wireless.radio0.channel, 3
     //mactable.nodes.push(entry);
@@ -190,23 +161,19 @@ function writemactable(mac) { //'wifi', wireless.radio0.channel, 3
     	}
 
     }else {	//not yet in table, create new
-		if (mac != 'c4:93:00:02:18:d8' && mac != 'c4:93:00:00:bd:74') {
-		    var entry = {};
-		    entry.node_id = mac;
-		    entry.param = [];
-	    	mactable.nodes.push(entry);
-	    	//console.log(mactable.nodes.length+'---'+JSON.stringify(entry)+'----'+JSON.stringify(mactable));
-		    //console.log(mactable.nodes[mactable.nodes.length-1]);
-	    	for (i in entries) {
-			    var p 	= {};
-			    p.type 	= entries[i].type; 
-			    p.param = entries[i].param.split('=')[0]; 
-			    p.value = entries[i].param.split('=')[1];
-		    	mactable.nodes[mactable.nodes.length-1].param.push(p);
-		    }
-
-		}
-
+	    var entry = {};
+	    entry.node_id = mac;
+	    entry.param = [];
+    	mactable.nodes.push(entry);
+    	//console.log(mactable.nodes.length+'---'+JSON.stringify(entry)+'----'+JSON.stringify(mactable));
+	    //console.log(mactable.nodes[mactable.nodes.length-1]);
+    	for (i in entries) {
+		    var p 	= {};
+		    p.type 	= entries[i].type; 
+		    p.param = entries[i].param.split('=')[0]; 
+		    p.value = entries[i].param.split('=')[1];
+	    	mactable.nodes[mactable.nodes.length-1].param.push(p);
+	    }
 
     }
     //console.log(JSON.stringify(mactable,null,4));

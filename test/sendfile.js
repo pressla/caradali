@@ -7,6 +7,7 @@ var multicastIDs = ['239.1.1.200','239.1.1.201'];
 var r=0;
 var targetPort	= 61088;
 var node_id = '00:00:00:00:00:00';
+var r= 0;
 
 if (process.argv.length <= 2) {
   console.log('sendfile <filetosend> <targetpath> <optional: target ip>')
@@ -29,9 +30,9 @@ function broadcast() {
   var f = fs.readFileSync(fname);
   cmd = 'FILE~'+tname+'~'+f;
   console.log(cmd.split('~'));
-
+  r=3;
 	;	
-  setInterval(send, 3000);
+  send();
   //process.exit();
 };
 
@@ -41,5 +42,9 @@ function send () {
   var buf = new Buffer(cmd);
   pub1.send(buf, 0, buf.length, targetPort, multicastIDs[0]);
   console.log (' Sent ');
+    r--;
+  if (r>0) setTimeout (send, 3000);
+  else process.exit();
+
 };
 

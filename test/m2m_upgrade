@@ -1,6 +1,6 @@
-#!/bin/sh
-#m2m_upgrade
-#Author: jingjing wang for imitrix GmbH, 2015
+killall node
+killall m2m_main
+
 hash=e22cdfe4343183be702ee7e136225c8b
 url=image-carambola/carambola2-e22cdfe4343183be702ee7e136225c8b-201504070620.bin
 mode=2
@@ -24,5 +24,3 @@ reboot
 fi
 fi
 fi
-sleep 30
-killall -9 node
