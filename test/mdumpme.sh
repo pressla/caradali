@@ -6,4 +6,4 @@
 # myGrouping~group=<group_id> and myGrouping~name=<nodename> are special command for the switch command on LED lights
 
 
-node meshdump uci%set~wireless.@wifi-iface[0].ssid=AIMLED2 uci%set~wireless.@wifi-device[0].channel=1 uci%set~wireless.@wifi-iface[1].mesh_rssi_threshold=0 myGrouping~group=G1 myGrouping~name=L1
+node meshdump uci%set~wireless.@wifi-iface[0].ssid=AIMLED uci%set~wireless.@wifi-vice[0].channel=9 uci%set~wireless.@wifi-iface[1].mesh_rssi_threshold=0 uci%set~wireless.@wifi-iface[1].mesh_id=mesh-test myGrouping~group=G3 myGrouping~name=L1

@@ -149,9 +149,11 @@ keypress(process.stdin);
  
 // listen for the "keypress" event 
 process.stdin.on('keypress', function (ch, key) {
-  console.log('got "keypress"', key);
-  if (key.name == 's') {
-    process.exit();
+  console.log('got "keypress"', key.name);
+  if (key.name == 'r') {
+  	fs.unlink('./meshdump2');
+  	fs.unlink(mactablefilename);
+    //process.exit();
   }
 });
  
