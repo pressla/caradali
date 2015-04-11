@@ -1,0 +1,12 @@
+#!/bin/sh
+tar -xf m2mdali.tar
+rm m2mdali.tar
+mac=`cat /sys/class/ieee80211/phy0/macaddress`
+dat=`date "+%Y%m%d%H%M"`
+echo $dat > /etc/config/config_version         #very important
+sysupgrade -b /tmp/back.up
+md5=`md5sum /tmp/back.up | awk '{print $1'}`
+cp /tmp/back.up /tmp/config-$md5-$dat.tar.gz
+scp /tmp/config-$md5-$dat.tar.gz root@acc.ledwifi.de:/home/data/config-carambola
+echo "http://acc.ledwifi.de/setconfig?mac="$mac"&configdesc=buildconf&config=config-"$md5-$dat.tar.gz
+

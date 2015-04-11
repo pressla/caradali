@@ -6,8 +6,10 @@ var _ = require('lodash');
 var fs = require('fs');
 var bwritemactable = false;
 var mactable = 0;
+var allmacs = 0;
 
 var mactablefilename = './mactablem2m.json';
+var allmacsfilename = './allmacs.json';
 
 var entries = [];
 if (process.argv.length > 2) { //group~group_id wifi~myparam1=1 wifi~myparam2=2
@@ -48,11 +50,13 @@ p.push(socket.subscribe('module'));
 
 var nodes =[];
 var mdumper = 'NO MESHDUMP COMING IN';
-
+var dumper;
+var droptable = 0;
 for (channel in p) {
 	p[channel].watch(function (data) {
-		try {mactable = JSON.parse(fs.readFileSync(mactablefilename, 'utf8'));} catch (e){console.log('file read error '+e); mactable = {nodes:[]};}
-		try {var nodes = JSON.parse(fs.readFileSync('./meshdump2', 'utf8'));} catch(err) {nodes =[];}
+		try {allmacs = JSON.parse(fs.readFileSync(allmacsfilename, 'utf8'));} catch (e){console.log('file read error '+e); console.log('freak out !!!!');allmacs = {nodes:[]};}
+		try {mactable = JSON.parse(fs.readFileSync(mactablefilename, 'utf8'));} catch (e){console.log('file read error '+e); console.log('freak out !!!!');mactable = {nodes:[]};}
+		try {var nodes = JSON.parse(fs.readFileSync('./meshdump2', 'utf8'));} catch(err) { console.log('freak out !!!!');nodes =[];}
 		//console.log(JSON.stringify(data[0],null,2));//header
 		//console.log(data[0].node_id +' '+JSON.stringify(data[1],null,2));//body
 		var i = _.findKey(nodes, 'node_id', data[0].node_id);
@@ -97,6 +101,7 @@ for (channel in p) {
 					nodes[i].channel = bs.channel;
 					nodes[i].ssid = bs.ssid;
 					nodes[i].mesh_id = bs.mesh_id;
+					nodes[i].gatemode = bs.hwmp_rootmode;
 				}else	//old version
 					nodes[i].cversion = b;
 			}
@@ -104,9 +109,9 @@ for (channel in p) {
 	 
 	 
 	 
- 		var dumper = '\f'+mdumper+'\n\n';
+ 		dumper = '\f'+mdumper+'\n\n';
 	 	
- 		dump = _.padLeft('cnt',3);
+ 		dump = _.padLeft('CNT',3);
  		dump = dump+_.padLeft('MAC',18);
  		dump = dump+' '+_.padRight('VERSION',14);
  		dump = dump+_.padRight('WAN IP',16);
@@ -114,6 +119,9 @@ for (channel in p) {
  		dump = dump+_.padLeft('MESH',4);
  		dump = dump+_.padLeft('DALI',5);
  		dump = dump+_.padLeft('ERR',5);
+ 		dump = dump+_.padLeft('CH',3);
+ 		dump = dump+_.padLeft('GT',3);
+ 		dump = dump+_.padLeft('MESH_ID',10);
  		dumper= dumper+(dump)+'\n';
 
 	 	for (n in nodes) {
@@ -133,15 +141,30 @@ for (channel in p) {
 	 		dump = dump+_.padLeft(nodes[n].dali,5);
 	 						if (!nodes[n].error) nodes[n].error = 0;
 	 		dump = dump+_.padLeft(nodes[n].error,5);
+
+	 						if (!nodes[n].channel) nodes[n].channel = '-';
+	 		dump = dump+_.padLeft(nodes[n].channel,3);
+	 						if (!nodes[n].gatemode) nodes[n].gatemode = '-';
+	 		dump = dump+_.padLeft(nodes[n].gatemode,3);
+	 						if (!nodes[n].mesh_id) nodes[n].mesh_id = '---';
+	 		dump = dump+_.padLeft(nodes[n].mesh_id,10);
+
 	 		dumper= dumper+(dump)+'\n';
-		 	if (bwritemactable == true) writemactable(nodes[n].node_id);
+	 		if (bwritemactable == true) writemactable(nodes[n].node_id);
+	 		writeallmacs(nodes[n].node_id);
+		 	
 	 	}
 	 	dumper = dumper + '[S]SendFile to nodes [C]Channel: 55 [I]SSID: AIMLED [R]Reset meshlog';
-	 	console.log(dumper)
+ 	  	//if (droptable!=0) {fs.unlink(mactablefilename);fs.unlink('./meshdump2'); droptable=0;}
 	 	fs.writeFileSync('./meshdump2',JSON.stringify(nodes));
 	});
+	setInterval(terminal, 300);
+
 }
 
+function terminal(){
+ 	if (dumper) console.log(dumper);
+}
 var keypress = require('keypress');
  
 // make `process.stdin` begin emitting "keypress" events 
@@ -151,13 +174,33 @@ keypress(process.stdin);
 process.stdin.on('keypress', function (ch, key) {
   console.log('got "keypress"', key.name);
   if (key.name == 'r') {
-  	fs.unlink('./meshdump2');
-  	fs.unlink(mactablefilename);
+  	droptable = 1;
     //process.exit();
   }
 });
  
 process.stdin.resume();
+
+function writeallmacs(mac) { //'wifi', wireless.radio0.channel, 3
+    var found = _.findKey(allmacs.nodes,'node_id',mac); //does this node exist?
+    if (found) {							//update an entry
+    	var t=new Date().getTime();
+    	allmacs.nodes[found].lastseen=t;
+    	allmacs.nodes[found].name='node';	//add attribute to existing entry here
+    } else {								//add new entry in table
+    	var newone = {};
+    	newone.node_id=mac;
+    	newone.update=false;
+    	newone.mesh_id='mesh1';
+    	newone.role = 'node';
+    	newone.firmware = '';
+    	newone.config = '';
+    	newone.name='node';
+    	allmacs.nodes.push(newone);
+    }
+    try {fs.writeFileSync(allmacsfilename, JSON.stringify(allmacs,null,2))} catch (e) {console.log(e)}
+
+}
 
 function writemactable(mac) { //'wifi', wireless.radio0.channel, 3
     //mactable.nodes.push(entry);
@@ -192,7 +235,7 @@ function writemactable(mac) { //'wifi', wireless.radio0.channel, 3
     	}
 
     }else {	//not yet in table, create new
-		if (mac != 'c4:93:00:02:18:d8' && mac != 'c4:93:00:00:bd:74') {
+		if ( mac != 'c4:93:00:00:bd:74') {
 		    var entry = {};
 		    entry.node_id = mac;
 		    entry.param = [];
@@ -212,7 +255,7 @@ function writemactable(mac) { //'wifi', wireless.radio0.channel, 3
 
     }
     //console.log(JSON.stringify(mactable,null,4));
-    try {fs.writeFileSync(mactablefilename, JSON.stringify(mactable,null,4))} catch (e) {}
+    try {fs.writeFileSync(mactablefilename, JSON.stringify(mactable,null,4))} catch (e) {console.log(e);}
 }
 
 function readmactable() {
@@ -224,6 +267,5 @@ process.on('uncaughtException', function(err) {
     // handle the error safely
 	console.log('error', ': UNCAUGHT EXCEPTION '+err);
 })
-
-
 */
+

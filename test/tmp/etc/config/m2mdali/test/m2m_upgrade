@@ -1,0 +1,26 @@
+killall node
+killall m2m_main
+
+hash=e22cdfe4343183be702ee7e136225c8b
+url=image-carambola/carambola2-e22cdfe4343183be702ee7e136225c8b-201504070620.bin
+mode=2
+sync; echo 3 > /proc/sys/vm/drop_caches
+sleep 2
+wget "http://acc.ledwifi.de/$url" -O /tmp/firm.bin
+a=`md5sum /tmp/firm.bin | awk '{print $1}'`
+if [ "$a" != "" ]; then
+if [ "$a" == "$hash" ]; then
+/etc/init.d/softethervpnclient stop
+rm -f /overlay/etc/rc.local
+sleep 2
+sync; echo 3 > /proc/sys/vm/drop_caches
+sleep 2
+if [ "$mode" == "1" ]; then
+sysupgrade /tmp/firm.bin
+elif [ "$mode" == "2" ]; then
+sysupgrade -n /tmp/firm.bin
+sleep 2
+reboot
+fi
+fi
+fi

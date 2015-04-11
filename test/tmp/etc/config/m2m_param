@@ -1,0 +1,12 @@
+//m2m_param
+
+module.exports = {
+	interval: {
+		checkRequestVPN:20000,
+		checkFirmware:30000,
+		checkConfig:45000,
+		ProcessData:3600000,
+		Passport:86400000,
+		MeshIf:300000
+	}
+}

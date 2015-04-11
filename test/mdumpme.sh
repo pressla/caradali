@@ -5,5 +5,6 @@
 # % will be replaced by blank char, so a command can be issued on command line on the node <command>~<parameter>=<value>
 # myGrouping~group=<group_id> and myGrouping~name=<nodename> are special command for the switch command on LED lights
 
+#rootnodes:
+node meshdump uci%set~wireless.ap.ssid=AIMLED uci%set~wireless.radio0.channel=9 uci%set~wireless.mesh.mesh_hwmp_rootnode=3 uci%set~wireless.mesh.mesh_gate_announcements=1 uci%set~wireless.mesh.mesh_id=mesh-test myGrouping~group=G3 myGrouping~name=L1
 
-node meshdump uci%set~wireless.@wifi-iface[0].ssid=AIMLED uci%set~wireless.@wifi-vice[0].channel=9 uci%set~wireless.@wifi-iface[1].mesh_rssi_threshold=0 uci%set~wireless.@wifi-iface[1].mesh_id=mesh-test myGrouping~group=G3 myGrouping~name=L1

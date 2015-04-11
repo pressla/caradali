@@ -1,0 +1,5 @@
+config autossh
+	option ssh	'-i /etc/dropbear/id_rsa -N -T -R 2223:localhost:22 root@acc.ledwifi.de'
+	option gatetime	'0'
+	option monitorport	'20000'
+	option poll	'600'

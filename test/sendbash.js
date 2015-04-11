@@ -8,11 +8,15 @@ var targetPort	= 61088;
 var node_id = '00:00:00:00:00:00';
 
 if (process.argv.length <= 2) {
-console.log('cmd  ')
+console.log('cmd  <command line> <opt:ip>');
+
 return;	
 }
 var p = [];
 try {cmd = process.argv[2]} catch (e) {cmd = 'ls';}
+if (process.argv.length ==4) {
+  multicastIDs[0] = process.argv[3];
+}
 console.log(p);
 
 broadcast();

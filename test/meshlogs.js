@@ -42,7 +42,7 @@ p.push(socket.subscribe('state'));
 //p.push(socket.subscribe('mpath'));
 //p.push(socket.subscribe('ifconfig'));
 p.push(socket.subscribe('info'));
-//p.push(socket.subscribe('top'));
+p.push(socket.subscribe('top'));
 p.push(socket.subscribe('error'));
 //p.push(socket.subscribe('meshlog'));
 p.push(socket.subscribe('module'));
@@ -69,11 +69,10 @@ for (channel in p) {
 	});
 }
 
-/*
+
 process.on('uncaughtException', function(err) {
     // handle the error safely
 	console.log('error', ': UNCAUGHT EXCEPTION '+err);
 })
 
 
-*/

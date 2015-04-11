@@ -1,0 +1,12 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+export HOME=/root
+
+#sleep 20
+# enable multicast
+#echo "0" > /sys/devices/virtual/net/br-lan/bridge/multicast_snooping
+#/etc/init.d/autossh restart
+#/usr/bin/meshd-nl80211 -c /etc/config/authsae.conf -s "mesh-test" -i meshif &
+
+exit 0

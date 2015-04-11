@@ -1,0 +1,164 @@
+{
+    "nodes": [
+        {
+            "node_id": "c4:93:00:02:18:bd",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.ap.ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.radio0.channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_hwmp_rootnode",
+                    "value": "3"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_gate_announcements",
+                    "value": "1"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_id",
+                    "value": "mesh-test"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G3"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        },
+        {
+            "node_id": "c4:93:00:02:18:d2",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.ap.ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.radio0.channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_hwmp_rootnode",
+                    "value": "3"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_gate_announcements",
+                    "value": "1"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_id",
+                    "value": "mesh-test"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G3"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        },
+        {
+            "node_id": "c4:93:00:02:18:c6",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.ap.ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.radio0.channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_hwmp_rootnode",
+                    "value": "3"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_gate_announcements",
+                    "value": "1"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_id",
+                    "value": "mesh-test"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G3"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        },
+        {
+            "node_id": "c4:93:00:02:18:d8",
+            "param": [
+                {
+                    "type": "uci%set",
+                    "param": "wireless.ap.ssid",
+                    "value": "AIMLED"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.radio0.channel",
+                    "value": "9"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_hwmp_rootnode",
+                    "value": "3"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_gate_announcements",
+                    "value": "1"
+                },
+                {
+                    "type": "uci%set",
+                    "param": "wireless.mesh.mesh_id",
+                    "value": "mesh-test"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "group",
+                    "value": "G3"
+                },
+                {
+                    "type": "myGrouping",
+                    "param": "name",
+                    "value": "L1"
+                }
+            ]
+        }
+    ]
+}

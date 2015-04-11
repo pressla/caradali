@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "node_id": "c4:93:00:02:76:7d",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "lastseen": 1428783766254,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:18:c6",
+      "update": false,
+      "mesh_id": "mesh-test",
+      "role": "gateway",
+      "firmware": "",
+      "config": "config-67eccc4d88ea91818025245696afe091-201504102312.tar.gz",
+      "lastseen": 1428783766254,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:18:d8",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "gateway",
+      "firmware": "",
+      "config": "config-67eccc4d88ea91818025245696afe091-201504102312.tar.gz",
+      "lastseen": 1428783766254,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:63:fc",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "lastseen": 1428783766255,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:85:d7",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "lastseen": 1428783766255,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:76:14",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "lastseen": 1428783766256,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:76:32",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "lastseen": 1428783766256,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:00:bd:74",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "gateway",
+      "firmware": "",
+      "config": "config-67eccc4d88ea91818025245696afe091-201504102312.tar.gz",
+      "lastseen": 1428783766256,
+      "name": "node"
+    },
+    {
+      "node_id": "c4:93:00:02:18:d2",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "name": "node",
+      "lastseen": 1428783766257
+    },
+    {
+      "node_id": "c4:93:00:02:76:68",
+      "update": false,
+      "mesh_id": "mesh1",
+      "role": "node",
+      "firmware": "",
+      "config": "config-b89aec7414f702857362cf71b9819856-201504102218.tar.gz",
+      "name": "node",
+      "lastseen": 1428783766257
+    }
+  ]
+}
