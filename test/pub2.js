@@ -1,8 +1,16 @@
 //Alex Pressl for imitrix GmbH
 
 var commands = [
-	['switch','G1', 0],
-	['switch','G1', 100],
+	['switch','G99', 0],
+	['switch','G99', 100],
+	['switch','G1', 30],
+	['switch','G1', 70],
+	['switch','G2', 20],
+	['switch','G2', 80],
+	['switch','L1', 90],
+	['switch','L1', 10],
+	['switch','G17', 45],
+	['switch','G17', 55]
 ];
 
 var mmands = [

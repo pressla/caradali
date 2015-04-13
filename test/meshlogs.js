@@ -57,13 +57,13 @@ for (channel in p) {
 		//console.log(JSON.stringify(data[1],null,2));//body
 	if (entries.length>0){
 		if (data[0].node_id == entries[0].type)
-		 	console.log(data[0].node_id)+' '+data[1]; 
+		 	console.log(data[0].content+data[0].node_id+' '+data[1]); 
 
 	}else	 	{
 		if (data[0].content=='error')
-		 	console.log(data[0].node_id+' '+JSON.stringify(data[1]).red.bold); 
+		 	console.log(data[0].node_id+' '+data[0].content+' '+JSON.stringify(data[1]).red.bold); 
 		 else
-		 	console.log(data[0].node_id+' '+JSON.stringify(data[1]).yellow); 
+		 	console.log(data[0].node_id+' '+data[0].content+' '+JSON.stringify(data[1]).yellow); 
 
 	}
 	});

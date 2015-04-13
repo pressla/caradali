@@ -27,9 +27,13 @@ function initComplete(){
 	app.logger.log('info', '[initComplete]');
 }
 
-process.on('uncaughtException', function(err) {
-    // handle the error safely
-	app.logger.log('error', 'm2m-lightcontrol: UNCAUGHT EXCEPTION '+err);
-	//process.exit();
-})
+if (process.argv.length > 2) { 
+	console.log('debugging version');
+} else {
+	process.on('uncaughtException', function(err) {
+	    // handle the error safely
+		app.logger.log('error', 'm2m-lightcontrol: UNCAUGHT EXCEPTION '+err);
+		//process.exit();
+	});
+}
 

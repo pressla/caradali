@@ -262,10 +262,10 @@ function readmactable() {
 
 
 }
-/*
+
 process.on('uncaughtException', function(err) {
     // handle the error safely
 	console.log('error', ': UNCAUGHT EXCEPTION '+err);
 })
-*/
+
 
