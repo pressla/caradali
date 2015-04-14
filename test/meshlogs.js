@@ -1,8 +1,6 @@
 //m2m-socket-sub.js
 //Alex Pressl for imitrix GmbH 2015
 
-var array = require('lodash/array');
-var _ = require('lodash');
 var _ = require('colors');
 var fs = require('fs');
 var bwritemactable = false;
@@ -39,8 +37,8 @@ var socket = scClient.connect(options);
 
 var p   = [];
 p.push(socket.subscribe('state'));
-//p.push(socket.subscribe('mpath'));
-//p.push(socket.subscribe('ifconfig'));
+p.push(socket.subscribe('mpath'));
+p.push(socket.subscribe('ifconfig'));
 p.push(socket.subscribe('info'));
 p.push(socket.subscribe('top'));
 p.push(socket.subscribe('error'));

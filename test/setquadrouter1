@@ -1,0 +1,1 @@
+node sendfile mactableQuadrouter1.json /etc/config/mactablem2m.json

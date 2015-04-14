@@ -16,7 +16,7 @@ return;
 var p = [];
 try {fname = process.argv[2]} catch (e) {cmd = 'nocmd';}
 try {fnametarget = process.argv[3]} catch (e) {p[0] = 'P0';}
-try {multicastIDs[0] = process.argv[4]} catch (e) {multicastIDs = ['239.1.1.200'];}
+if (process.argv[4]) multicastIDs[0] = process.argv[4];
 
 broadcast();
 var cmd;
@@ -30,7 +30,7 @@ function broadcast() {
   var f = fs.readFileSync(fname);
   cmd = 'FILE~'+tname+'~'+f;
   console.log(cmd.split('~'));
-  r=3;
+  r=1;
 	;	
   send();
   //process.exit();
@@ -39,12 +39,17 @@ function broadcast() {
 
 
 function send () {
+  var args = [].slice.call(arguments);
+  var fn = typeof args[args.length - 1] == 'function' ? args.pop() : null;
+
   var buf = new Buffer(cmd);
-  pub1.send(buf, 0, buf.length, targetPort, multicastIDs[0]);
-  console.log (' Sent ');
-    r--;
-  if (r>0) setTimeout (send, 3000);
-  else process.exit();
+  pub1.send(buf, 0, buf.length, targetPort, multicastIDs[0], fn);
+    console.log (' Sent '+cmd);
+      r--;
+    if (r>0) setTimeout (send, 3000);
+    //else process.exit();
+
+  
 
 };
 

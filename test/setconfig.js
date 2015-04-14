@@ -18,12 +18,29 @@ if (process.argv.length == 5) {
 	entry.filename = process.argv[4];
 }else
 {
-	console.log ('setconfig <role | all | id> <config | firmware> <filename>');
+	console.log ('setconfig <role | all | id | default> <config | firmware> <filename>');
 	console.log('set role to update all of a role, all or specific node_ids specified in allmacs file - update must be set to true');
 	process.exit();
 }
 
+if (entry.role=='default'){
+	var s = 'http://acc.ledwifi.de/setconfig?mac='+'00:00:00:00:00:00';
+	if (entry.type == 'config') 	s=s+'&config='+entry.filename;
+	if (entry.type == 'firmware') 	s=s+'&path='+entry.filename;
 
+	console.log(s);
+	request(s, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var r = JSON.parse(body);
+			if (r.result=='accepted') {
+				console.log((i+' setconfig ok: '+r.sid).green);
+			}
+	  	} else{
+	  		console.log(('http error: '+error).red);
+	  	}
+	  	process.exit();
+	});
+}
 
 for (imac in allmacs.nodes) {
 	var n = allmacs.nodes[imac];
@@ -52,10 +69,10 @@ for (imac in allmacs.nodes) {
 		  	} else{
 		  		console.log(('http error: '+error).red);
 		  	}
+			fs.writeFileSync(allmacsfilename, JSON.stringify(allmacs,null,2))
 		});
 				
 	}
 }
 
-fs.writeFileSync(allmacsfilename, JSON.stringify(allmacs,null,2))
 

@@ -3,6 +3,10 @@ tar -xf m2mdali.tar
 rm m2mdali.tar
 rm /etc/config/mactablem2m.json
 rm /etc/config/mtm1.json
+find . -name *~ -exec rm -f {} \;
+rm /root/m2m_persist.json
+mv /etc/config/wireless /etc/config/_wireless
+rm node_modules/m2m-socket-pipe -r
 
 mac=`cat /sys/class/ieee80211/phy0/macaddress`
 dat=`date "+%Y%m%d%H%M"`
@@ -10,6 +14,8 @@ echo $dat > /etc/config/config_version         #very important
 sysupgrade -b /tmp/back.up
 md5=`md5sum /tmp/back.up | awk '{print $1'}`
 cp /tmp/back.up /tmp/config-$md5-$dat.tar.gz
+mv /etc/config/_wireless /etc/config/wireless
+
 scp /tmp/config-$md5-$dat.tar.gz root@acc.ledwifi.de:/home/data/config-carambola
 echo "http://acc.ledwifi.de/setconfig?mac="$mac"&configdesc=buildconf&config=config-"$md5-$dat.tar.gz
 

@@ -2,7 +2,7 @@
 
 var dgram 		= require('dgram'); 
 var pub1 		= dgram.createSocket("udp4"); 
-var multicastIDs = ['239.1.1.200','239.1.1.201'];
+var multicastIDs = ['239.1.1.200'];
 var r=0;
 var targetPort	= 61088;
 var node_id = '00:00:00:00:00:00';

@@ -6,5 +6,5 @@
 # myGrouping~group=<group_id> and myGrouping~name=<nodename> are special command for the switch command on LED lights
 
 #rootnodes:
-node meshdump uci%set~wireless.ap.ssid=AIMLED uci%set~wireless.radio0.channel=9 uci%set~wireless.mesh.mesh_hwmp_rootnode=3 uci%set~wireless.mesh.mesh_gate_announcements=1 uci%set~wireless.mesh.mesh_id=mesh-test myGrouping~group=G3 myGrouping~name=L1
+node meshdump uci%set~wireless.ap.ssid=AIMLED uci%set~wireless.radio0.channel=9 uci%set~wireless.mesh.mesh_hwmp_rootmode=0 uci%set~wireless.mesh.mesh_gate_announcements=0 uci%set~wireless.mesh.mesh_id=mesh-test myGrouping~group=G1 myGrouping~name=L1
 
