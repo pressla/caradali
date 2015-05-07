@@ -97,6 +97,7 @@ for (channel in p) {
 				nodes[i].meshdest = b.length-2;
 				mdumper = mdumper+data[1].toString().replace(/,/g,'\n').replace(/ /g,'\t');
 				//console.log(JSON.stringify(data[1],null,2));//body
+				pushNetwork(data);
 			}
 			if (header.content == 'error') {
 				try{nodes[i].error = nodes[i].error + 1;}catch(e){nodes[i].error=0;}
@@ -119,7 +120,7 @@ for (channel in p) {
 	 
 	 
 	 
- 		dumper = '\n\n\n\n\n'+mdumper.green+'\n\n';
+ 		dumper = '\n\n\n\n'+meshwork.length+'\n'+mdumper.green+'\n\n';
 	 	
  		dump = _.padLeft('CNT',3);
  		dump = dump+_.padLeft('MAC',18);
@@ -170,7 +171,7 @@ for (channel in p) {
 	 		writeallmacs(nodes[n].node_id);
 		 	
 	 	}
-	 	dumper = dumper + '[S]SendFile to nodes [R]Reset meshlog'.yellow;
+	 	dumper = dumper + '[S]SendFile to nodes [R]Reset meshlog [M]dump meshwork'.yellow;
  	  	//if (droptable!=0) {fs.unlink(mactablefilename);fs.unlink('./meshdump2'); droptable=0;}
 	 	fs.writeFileSync('./meshdump2',JSON.stringify(nodes));
 	});
@@ -191,10 +192,15 @@ process.stdin.on('readable', function() {
 	    process.stdout.write('data: ' + chunk[0]);
 		update = false;
 	  	if (chunk.charAt(0) == 'c') {
-	  		console.log('SET CHANNEL '+chunk.substr(1,2));
+	  		console.log(' SET CHANNEL '+chunk.substr(1,2));
+	  	}
+	  	if (chunk.charAt(0) == 'm') {
+	  		console.log(' write MESHWORK '+chunk.substr(1,2));
+	  		writeNetwork();
+	  		//meshwork = [];
 	  	}
 	  	if (chunk.charAt(0) == 'r') {
-			console.log('RESET MESHDUMP '.red);
+			console.log(' RESET MESHDUMP '.red);
 		  	nodes.length=0;
 		  	mactable = {nodes:[]};
 		 	fs.writeFileSync('./meshdump2',JSON.stringify(nodes));
@@ -300,10 +306,59 @@ function writemactable(mac) { //'wifi', wireless.radio0.channel, 3
     try {fs.writeFileSync(mactablefilename, JSON.stringify(mactable,null,4))} catch (e) {console.log(e);}
 }
 
-function readmactable() {
+function stripMAC(str) {
+    return str.replace('c4:93:00', '');  
+}
 
+var meshwork = [];
+
+function pushNetwork(data) {
+	var found = -1;
+	var mac = data[0].node_id;
+	for (i in meshwork){
+		if (meshwork[i][0].node_id == mac) {
+			meshwork[i] = data;
+			found = i;
+		}		
+	}
+
+    //var found = _.findKey(meshwork,'node_id',mac); //does this node exist?
+   	//console.log(found);
+    if (found == -1) {
+    	meshwork.push(data);
+    }
 
 }
+
+function writeNetwork() {
+	var regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
+
+	var wstream = fs.createWriteStream('meshwork.dot');
+	wstream.write('strict digraph G {\n');
+	for (m in meshwork) {
+		var rec = meshwork[m];
+		header=rec[0];
+		if (header &&'content' in header)
+			if (header['content'] === 'mpath') {
+				console.log(header);
+				body=rec[1];
+				if ('node_id' in header) node_id = header['node_id'];
+				for (idx in body) {
+					path=body[idx];
+					var res = path.split(" ");
+					if (regex.test(res[0]))
+						wstream.write("\"" + stripMAC(node_id) + "\" -> \"" + stripMAC(res[1]) + 
+						"\" [label=\"to" + stripMAC(res[0]) + "\"]\n");
+				}
+			}
+	}
+	
+	wstream.write("}");
+	wstream.end();
+
+}
+
+
 /*
 process.on('uncaughtException', function(err) {
     // handle the error safely
